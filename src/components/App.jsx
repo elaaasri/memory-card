@@ -1,17 +1,11 @@
-// import FetchPokemonApi from "./fetchPokemonApi.js";
-// import fetchPokemonApi from "../utils/fetchPokemonApi.js";
-// import DisplayCards from "./DisplayCards.jsx";
-// import { DisplayCards } from "./fetchPokemonApi.js";
-// import fetchPokemonApi from "../utils/fetchPokemonApi.js";
-import "../utils/fetchPokemonApi.js";
-
+import "../utils/fetchPokemonApi";
+import DisplayPokemonCards from "./DisplayPokemonCard";
+// app func :
 const App = () => {
-  // fetchPokemonApi();
   return (
     <>
-      <h1>Hello</h1>
-      <h2>aze</h2>
-      {/* <DisplayCards /> */}
+      <h2>Hello</h2>
+      <DisplayPokemonCards />
     </>
   );
 };

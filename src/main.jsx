@@ -1,11 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles/index.css";
-// import App from "./components/App.jsx";
 import App from "./components/App";
-import { pokemonCardsArr } from "./utils/fetchPokemonApi";
 
-console.log(pokemonCardsArr);
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />

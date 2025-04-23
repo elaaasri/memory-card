@@ -18,7 +18,6 @@ const fetchAndGetPokemonsCards = (randomPokemons) => {
   return pokemonCards;
 };
 // fetch pokemon api promise chain :
-const pokemonCardsArr = [];
 const fetchPokemonApi = async (url) => {
   const res = await fetch(url);
   const data = await res.json();
@@ -26,7 +25,5 @@ const fetchPokemonApi = async (url) => {
   const pokemonCards = await fetchAndGetPokemonsCards(randomPokemons);
   return pokemonCards;
 };
-fetchPokemonApi("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0").then(
-  (pokemonCards) => pokemonCardsArr.push(...pokemonCards)
-);
-export { pokemonCardsArr };
+
+export default fetchPokemonApi;
