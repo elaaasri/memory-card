@@ -1,0 +1,32 @@
+// get random 20 pokemons :
+const getRandomPokemons = (data) => {
+  const randomPokemons = [];
+  for (let i = 0; i < 20; i++) {
+    const randomIndex = Math.floor(Math.random() * data.results.length);
+    randomPokemons.push(data.results[randomIndex]);
+  }
+  return randomPokemons;
+};
+// fetch and get pokemon cards (name and img):
+const fetchAndGetPokemonsCards = (randomPokemons) => {
+  const promises = randomPokemons.map(async (pokemon) => {
+    const res = await fetch(pokemon.url);
+    const data = await res.json();
+    return [data.name, data.sprites.front_default];
+  });
+  const pokemonCards = Promise.all(promises);
+  return pokemonCards;
+};
+// fetch pokemon api promise chain :
+const pokemonCardsArr = [];
+const fetchPokemonApi = async (url) => {
+  const res = await fetch(url);
+  const data = await res.json();
+  const randomPokemons = getRandomPokemons(data);
+  const pokemonCards = await fetchAndGetPokemonsCards(randomPokemons);
+  return pokemonCards;
+};
+fetchPokemonApi("https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0").then(
+  (pokemonCards) => pokemonCardsArr.push(...pokemonCards)
+);
+export { pokemonCardsArr };
