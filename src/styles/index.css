@@ -32,3 +32,6 @@
 .pokemon-card > img {
   width: 130px;
 }
+#pokemon-ball {
+  height: auto;
+}

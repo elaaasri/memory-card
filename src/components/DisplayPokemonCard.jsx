@@ -9,18 +9,22 @@ const DisplayPokemonCards = () => {
       "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
     ).then((pokemonCards) => setCards(pokemonCards));
   }, []);
-
-  console.log(cards);
-
   return (
     <div className="pokemon-cards-container">
       {cards.map((card, index) => {
-        const cardName = card[0];
-        const cardImg = card[1];
-
+        let cardName = card[0];
+        let cardImg = card[1];
         return (
           <div className="pokemon-card" key={index}>
-            <img src={cardImg} alt={cardName + " " + "img"} />
+            {cardImg != null ? (
+              <img src={cardImg} alt={cardName + " " + "image"} />
+            ) : (
+              <img
+                src="/public/imgs/pokemon-ball.png"
+                id="pokemon-ball"
+                alt={cardName + " " + "image"}
+              />
+            )}
             <div>{cardName}</div>
           </div>
         );
