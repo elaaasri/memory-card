@@ -1,21 +1,10 @@
-import { useState, useEffect } from "react";
-import fetchPokemonApi from "../utils/fetchPokemonApi";
-
-const DisplayPokemonCards = () => {
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    fetchPokemonApi(
-      "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
-    ).then((pokemonCards) => setCards(pokemonCards));
-  }, []);
+const DisplayPokemonCards = ({ cards, onShuffle }) => {
   return (
     <div className="pokemon-cards-container">
       {cards.map((card, index) => {
-        let cardName = card[0];
-        let cardImg = card[1];
+        const [cardName, cardImg] = card;
         return (
-          <div className="pokemon-card" key={index}>
+          <div className="pokemon-card" key={index} onClick={onShuffle}>
             {cardImg != null ? (
               <img src={cardImg} alt={cardName + " " + "image"} />
             ) : (

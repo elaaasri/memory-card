@@ -16,4 +16,5 @@ createRoot(document.getElementById("root")).render(
  *  - be sure to invoke it when the component mounts!
  * 3- fetch an api : ==> displays images
  *                   ==> informational text
+ *
  */
