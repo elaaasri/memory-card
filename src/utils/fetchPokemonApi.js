@@ -12,10 +12,13 @@ const fetchAndGetPokemonsCards = (randomPokemons) => {
   const promises = randomPokemons.map(async (pokemon) => {
     const res = await fetch(pokemon.url);
     const data = await res.json();
-    return [data.name, data.sprites.front_default];
+    return {
+      name: data.name,
+      img: data.sprites.front_default,
+      isClicked: false,
+    };
   });
-  const pokemonCards = Promise.all(promises);
-  return pokemonCards;
+  return Promise.all(promises);
 };
 // fetch pokemon api promise chain :
 const fetchPokemonApi = async (url) => {
@@ -23,6 +26,7 @@ const fetchPokemonApi = async (url) => {
   const data = await res.json();
   const randomPokemons = getRandomPokemons(data);
   const pokemonCards = await fetchAndGetPokemonsCards(randomPokemons);
+  console.log(pokemonCards);
   return pokemonCards;
 };
 
