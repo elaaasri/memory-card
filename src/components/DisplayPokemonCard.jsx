@@ -1,42 +1,18 @@
-const DisplayPokemonCards = ({
-  cards,
-  onShuffle,
-  getCardObj,
-  // setScore,
-  // setBestScore,
-  // setGameOver,
-}) => {
+const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
+  // handles card click :
   const handleCardClick = (e) => {
-    onShuffle();
-    getClickedCard(e);
+    shuffleCards();
+    const clickedCard = getClickedCardObj(e);
+    handleWin(clickedCard);
   };
-
-  const getClickedCard = (e) => {
+  // get clicked card obj :
+  const getClickedCardObj = (e) => {
     const cardElement =
       e.target.className == "pokemon-card" ? e.target : e.target.parentElement;
     const cardName = cardElement.lastElementChild.textContent;
     const clickedCard = cards.find((card) => card.name == cardName);
-    getCardObj(clickedCard);
+    return clickedCard;
   };
-
-  // const handleClickedCardEvent = (e) => {
-  //   const cardElement =
-  //     e.target.className == "pokemon-card" ? e.target : e.target.parentElement;
-  //   const cardName = cardElement.lastElementChild.textContent;
-  //   const targetCard = cards.find((card) => card.name == cardName);
-
-  //   if (targetCard.isClicked) {
-  //     setGameOver();
-  //     // setBestScore(score);
-  //   } else {
-  //     targetCard.isClicked = true;
-  //     handleScoreIncreament();
-  //   }
-  // };
-
-  // const handleScoreIncreament = () => {
-  //   setScore((prevScore) => prevScore + 1);
-  // };
 
   return (
     <div className="pokemon-cards-container">
