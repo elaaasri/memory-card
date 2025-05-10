@@ -5,6 +5,7 @@ import fetchPokemonApi from "../utils/fetchPokemonApi";
 // app func :
 const App = () => {
   const [cards, setCards] = useState([]);
+  const [cardObj, setCardObj] = useState({});
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
 
@@ -13,8 +14,6 @@ const App = () => {
       "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
     ).then((data) => setCards(data));
   }, []);
-
-  console.log(cards);
 
   // shuffle cards randomly :
   const shuffleCards = () => {
@@ -28,27 +27,49 @@ const App = () => {
     setCards(shuffledCards); // render shuffled cards
   };
 
+  console.log(cards);
+
   const gameOver = () => {
     cards.map((card) => (card.isClicked = false));
-    setScore(0);
+    // setScore(0);
 
-    console.log("GAME OVER".repeat(30));
-    console.log(score, bestScore);
-    console.log(cards);
+    // console.log(score, bestScore);
+    // console.log(cards);
   };
 
-  console.log(score);
+  const handleClickedCardEvent = () => {
+    console.log(cardObj);
+    if (cardObj.isClicked) {
+      // setScore(0);
+      // gameOver();
+      // setScore(0);
+      // setBestScore(score);
+    } else {
+      cardObj.isClicked = true;
+      handleScoreIncreament();
+    }
+  };
+
+  const handleScoreIncreament = () => {
+    setScore((prevScore) => prevScore + 1);
+  };
+
+  // handleClickedCardEvent();
 
   return (
     <>
       <h1>Score Board : {score}</h1>
-      <h1>Best Score : {bestScore}</h1>
+      <h1>
+        {/* Best Score : {score > bestScore ? setBestScore(score) : bestScore} */}
+        {bestScore}
+      </h1>
       <DisplayPokemonCards
         cards={cards}
         onShuffle={shuffleCards}
-        setScore={setScore}
-        setBestScore={setBestScore}
-        setGameOver={gameOver}
+        getCardObj={setCardObj}
+        // setScore={setScore}
+        // setBestScore={setBestScore}
+        // setGameOver={gameOver}
       />
     </>
   );

@@ -26,7 +26,6 @@ const fetchPokemonApi = async (url) => {
   const data = await res.json();
   const randomPokemons = getRandomPokemons(data);
   const pokemonCards = await fetchAndGetPokemonsCards(randomPokemons);
-  console.log(pokemonCards);
   return pokemonCards;
 };
 

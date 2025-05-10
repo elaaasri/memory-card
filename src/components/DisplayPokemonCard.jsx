@@ -1,30 +1,42 @@
-// import { useState } from "react";
-
 const DisplayPokemonCards = ({
   cards,
   onShuffle,
-  setScore,
-  setBestScore,
-  setGameOver,
+  getCardObj,
+  // setScore,
+  // setBestScore,
+  // setGameOver,
 }) => {
-  const handleClickedCardEvent = (e) => {
+  const handleCardClick = (e) => {
+    onShuffle();
+    getClickedCard(e);
+  };
+
+  const getClickedCard = (e) => {
     const cardElement =
       e.target.className == "pokemon-card" ? e.target : e.target.parentElement;
     const cardName = cardElement.lastElementChild.textContent;
-    const targetCard = cards.find((card) => card.name == cardName);
-
-    if (targetCard.isClicked) {
-      setGameOver();
-      setBestScore((prevScore) => prevScore + 1);
-    } else {
-      targetCard.isClicked = true;
-      handleScoreIncreament();
-    }
+    const clickedCard = cards.find((card) => card.name == cardName);
+    getCardObj(clickedCard);
   };
 
-  const handleScoreIncreament = () => {
-    setScore((prevScore) => prevScore + 1);
-  };
+  // const handleClickedCardEvent = (e) => {
+  //   const cardElement =
+  //     e.target.className == "pokemon-card" ? e.target : e.target.parentElement;
+  //   const cardName = cardElement.lastElementChild.textContent;
+  //   const targetCard = cards.find((card) => card.name == cardName);
+
+  //   if (targetCard.isClicked) {
+  //     setGameOver();
+  //     // setBestScore(score);
+  //   } else {
+  //     targetCard.isClicked = true;
+  //     handleScoreIncreament();
+  //   }
+  // };
+
+  // const handleScoreIncreament = () => {
+  //   setScore((prevScore) => prevScore + 1);
+  // };
 
   return (
     <div className="pokemon-cards-container">
@@ -34,15 +46,11 @@ const DisplayPokemonCards = ({
           <div
             className="pokemon-card"
             key={index}
-            onClick={(e) => {
-              onShuffle();
-              handleClickedCardEvent(e);
-            }}
+            onClick={(e) => handleCardClick(e)}
           >
             {img != null ? (
               <img src={img} alt={name + " " + "image"} />
             ) : (
-              // default pokemon img for cards with no img!
               <img
                 src="/public/imgs/pokemon-ball.png"
                 id="pokemon-ball"
