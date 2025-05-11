@@ -27,51 +27,28 @@ const App = () => {
   // handle game win logic :
   const handleWin = (cardObj) => {
     if (cardObj.isClicked) {
-      console.log("#".repeat(20));
-      alert("game over");
       gameOver();
-      setBestScore(score);
     } else {
-      console.log("#".repeat(20));
-      console.log("increment score");
-      setScore((prevScore) => prevScore + 1);
-      console.log("make click true");
+      handleScoreIncrement();
       cardObj.isClicked = true;
     }
   };
-
-  const gameOver = () => {
-    cards.map((card) => (card.isClicked = false)); // set all cards isClicked to false
-    setScore(0); // set score to 0
+  // increase score :
+  const handleScoreIncrement = () => {
+    setScore((prevScore) => prevScore + 1);
   };
-
-  // const handleScoreIncreament = () => {
-  //   setScore((prevScore) => prevScore + 1);
-  // };
-
-  // const handleClickedCardEvent = () => {
-  //   console.log(clickedCardObj);
-  //   if (clickedCardObj.isClicked) {
-  //     // setScore(0);
-  //     // gameOver();
-  //     // setScore(0);
-  //     // setBestScore(score);
-  //   } else {
-  //     clickedCardObj.isClicked = true;
-  //     handleScoreIncreament();
-  //   }
-  // };
-
-  console.log(bestScore, score);
-  console.log(bestScore > score);
-
+  // handles game over logic :
+  const gameOver = () => {
+    cards.map((card) => (card.isClicked = false)); // set cards isClicked to false
+    setScore(0); // set score to 0
+    console.log(score, bestScore);
+  };
   return (
     <>
       <h1>Score Board : {score}</h1>
       <h1>
-        {/* Best Score : {bestScore > score ? bestScore : setBestScore(score)} */}
+        Best Score : {score > bestScore ? setBestScore(score) : bestScore}
       </h1>
-      <h1> Best Score : {bestScore}</h1>
       <DisplayPokemonCards
         cards={cards}
         shuffleCards={shuffleCards}
@@ -81,12 +58,4 @@ const App = () => {
     </>
   );
 };
-
 export default App;
-
-/**
- * 1- takes the clicked pokemon and store its event that being clicked (in a object)
- * 2- if its not clicked increase score board state
- *  otherwise return
- * 3- if its already clicked the game is over
- */
