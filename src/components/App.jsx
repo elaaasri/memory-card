@@ -1,6 +1,7 @@
 import DisplayPokemonCards from "./DisplayPokemonCard";
 import { useState, useEffect } from "react";
 import fetchPokemonApi from "../utils/fetchPokemonApi";
+import Header from "./Header";
 
 // app func :
 const App = () => {
@@ -28,10 +29,10 @@ const App = () => {
   const handleWin = (cardObj) => {
     if (cardObj.isClicked) {
       gameOver();
-    } else {
-      handleScoreIncrement();
-      cardObj.isClicked = true;
+      return;
     }
+    handleScoreIncrement();
+    cardObj.isClicked = true;
   };
   // increase score :
   const handleScoreIncrement = () => {
@@ -41,10 +42,12 @@ const App = () => {
   const gameOver = () => {
     cards.map((card) => (card.isClicked = false)); // set cards isClicked to false
     setScore(0); // set score to 0
-    console.log(score, bestScore);
+    console.log(cards.length, score, bestScore);
   };
+  // const handleGameEnd = () => {};
   return (
     <>
+      <Header />
       <h1>Score Board : {score}</h1>
       <h1>
         Best Score : {score > bestScore ? setBestScore(score) : bestScore}

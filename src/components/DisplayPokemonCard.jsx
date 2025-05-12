@@ -28,7 +28,7 @@ const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
               <img src={img} alt={name + " " + "image"} />
             ) : (
               <img
-                src="/public/imgs/pokemon-ball.png"
+                src="/public/imgs/poke-ball.png"
                 id="pokemon-ball"
                 alt={name + " " + "image"}
               />
