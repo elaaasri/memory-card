@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import fetchPokemonApi from "../utils/fetchPokemonApi";
 import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
+import ReactParallaxTilt from "react-parallax-tilt";
 
 // app func :
 const App = () => {
@@ -52,7 +53,9 @@ const App = () => {
   // const handleGameEnd = () => {};
   return (
     <>
-      <Header />
+      <ReactParallaxTilt>
+        <Header />
+      </ReactParallaxTilt>
       <ScoreBoard
         score={score}
         bestScore={bestScore}

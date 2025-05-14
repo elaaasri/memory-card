@@ -1,11 +1,11 @@
 const ScoreBoard = ({ score, bestScore, cardsLength }) => {
   return (
     <div className="score-board">
-      <h1>Score Board: {score}.</h1>
-      <h1>Best Score: {bestScore}.</h1>
-      <h1>
+      <h3>Score Board: {score}.</h3>
+      <h3>Best Score: {bestScore}.</h3>
+      <h3>
         {score}/{cardsLength}
-      </h1>
+      </h3>
     </div>
   );
 };
