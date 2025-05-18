@@ -3,21 +3,22 @@ import { useState, useEffect } from "react";
 import fetchPokemonApi from "../utils/fetchPokemonApi";
 import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
-import PlayAgainPopUp from "./PlayAgainPopUp";
 
 // app func :
 const App = () => {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
-  const [isGameOver, setIsGameOver] = useState(false);
-
   // api effect :
   useEffect(() => {
     fetchPokemonApi(
       "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
     ).then((data) => setCards(data));
   }, []);
+  // check winning effect :
+  useEffect(() => {
+    checkWinCondition();
+  }, [score, cards]);
   // shuffles cards randomly :
   const shuffleCards = () => {
     const shuffledCards = [...cards]; // make a shallow copy
@@ -30,19 +31,27 @@ const App = () => {
     setCards(shuffledCards); // render shuffled cards
   };
   // handle game win logic :
-  const handleWin = (cardObj) => {
-    if (cardObj.isClicked) {
+  const handleWin = (cardName) => {
+    handleIsCardClicked(cardName);
+    // winning logic :
+    const clickedCard = cards.find((card) => card.name == cardName);
+    if (clickedCard.isClicked) {
       if (score > bestScore) {
         setBestScore(score);
       }
+      alert(`U LOSE!, ur final score is ${score}.`);
       gameOver();
-      alert(`ur final score is`, { score });
-      setIsGameOver(true);
-      // score > bestScore ? setBestScore(score) : bestScore;
       return;
     }
     handleScoreIncrement();
-    cardObj.isClicked = true;
+  };
+  // handle clicked card obj :
+  const handleIsCardClicked = (cardName) => {
+    setCards((prev) =>
+      prev.map((card) =>
+        card.name === cardName ? { ...card, isClicked: true } : card
+      )
+    );
   };
   // increase score :
   const handleScoreIncrement = () => {
@@ -50,14 +59,19 @@ const App = () => {
   };
   // handles game over logic :
   const gameOver = () => {
-    cards.map((card) => (card.isClicked = false)); // set cards isClicked to false
-    setScore(0); // set score to 0
-    // console.log(cards.length, score, bestScore);
+    setCards((prev) => prev.map((card) => ({ ...card, isClicked: false }))); // reset cards isClicked to false
+    setScore(0); // reset score to 0
   };
-  // const handleGameEnd = () => {};
+  // check winning :
+  const checkWinCondition = () => {
+    if (score === cards.length && cards.length !== 0) {
+      setBestScore(score);
+      alert(`U WON!, ur final score is ${score}`);
+      gameOver();
+    }
+  };
   return (
     <>
-      <PlayAgainPopUp isGameOver={isGameOver} />
       <Header />
       <ScoreBoard
         score={score}
@@ -67,7 +81,6 @@ const App = () => {
       <DisplayPokemonCards
         cards={cards}
         shuffleCards={shuffleCards}
-        setScore={setScore}
         handleWin={handleWin}
       />
     </>

@@ -4,9 +4,10 @@ const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
   // handles card click :
   const handleCardClick = (e) => {
     shuffleCards();
-    const clickedCard = getClickedCardObj(e, cards);
-    handleWin(clickedCard);
+    const cardName = getClickedCardName(e);
+    handleWin(cardName);
   };
+
   return (
     <div className="pokemon-cards-container">
       {Object.values(cards).map((card, index) => {
@@ -37,12 +38,11 @@ const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
   );
 };
 // get clicked card obj :
-const getClickedCardObj = (e, cards) => {
+const getClickedCardName = (e) => {
   const cardElement =
     e.target.className == "pokemon-card" ? e.target : e.target.parentElement;
   const cardName = cardElement.lastElementChild.textContent;
-  const clickedCard = cards.find((card) => card.name == cardName);
-  return clickedCard;
+  return cardName;
 };
 
 export default DisplayPokemonCards;
