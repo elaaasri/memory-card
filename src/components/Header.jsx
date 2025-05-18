@@ -1,5 +1,3 @@
-import ReactParallaxTilt from "react-parallax-tilt";
-
 const Header = () => {
   return (
     <header className="header">

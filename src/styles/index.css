@@ -66,16 +66,47 @@
   width: 180px;
   height: 200px;
   border-radius: 10px;
+  gap: 10px;
   cursor: pointer;
   background-color: rgba(0, 166, 255, 0.3);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5),
     0 4px 6px -4px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  /* transition: transform 0.3s; */
 }
+/* .pokemon-card:hover { */
+/* transform: scale(1.2); */
+/* } */
+
 .pokemon-card > img {
   width: 100%;
-  max-width: 160px;
+  max-width: 150px;
 }
-#pokemon-ball {
-  width: 80px;
-  height: auto;
+#pokemon-ball-icon {
+  width: 100px;
+}
+/* overlay and winner pop up windows styles */
+#overlay-window {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#winner-popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 35%;
+  height: 30%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0);
+  border: 1px solid orange;
+  color: white;
+  box-shadow: 0px 15px 40px black;
+  border-radius: 10px;
 }

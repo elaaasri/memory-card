@@ -1,5 +1,5 @@
 import ReactParallaxTilt from "react-parallax-tilt";
-
+// show pokemon cards :
 const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
   // handles card click :
   const handleCardClick = (e) => {
@@ -12,18 +12,23 @@ const DisplayPokemonCards = ({ cards, shuffleCards, handleWin }) => {
       {Object.values(cards).map((card, index) => {
         const { name, img } = card;
         return (
-          <ReactParallaxTilt key={index}>
+          <ReactParallaxTilt
+            scale={1.2}
+            glareEnable={true}
+            glarePosition={"all"}
+            key={index}
+          >
             <div className="pokemon-card" onClick={(e) => handleCardClick(e)}>
               {img != null ? (
                 <img src={img} alt={name + " " + "image"} />
               ) : (
                 <img
                   src="/public/imgs/poke-ball.png"
-                  id="pokemon-ball"
+                  id="pokemon-ball-icon"
                   alt={name + " " + "image"}
                 />
               )}
-              <div>{name}</div>
+              <span>{name}</span>
             </div>
           </ReactParallaxTilt>
         );

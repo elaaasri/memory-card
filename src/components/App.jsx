@@ -3,13 +3,15 @@ import { useState, useEffect } from "react";
 import fetchPokemonApi from "../utils/fetchPokemonApi";
 import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
-import ReactParallaxTilt from "react-parallax-tilt";
+import PlayAgainPopUp from "./PlayAgainPopUp";
 
 // app func :
 const App = () => {
   const [cards, setCards] = useState([]);
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
+  const [isGameOver, setIsGameOver] = useState(false);
+
   // api effect :
   useEffect(() => {
     fetchPokemonApi(
@@ -30,10 +32,12 @@ const App = () => {
   // handle game win logic :
   const handleWin = (cardObj) => {
     if (cardObj.isClicked) {
-      gameOver();
       if (score > bestScore) {
         setBestScore(score);
       }
+      gameOver();
+      alert(`ur final score is`, { score });
+      setIsGameOver(true);
       // score > bestScore ? setBestScore(score) : bestScore;
       return;
     }
@@ -53,9 +57,8 @@ const App = () => {
   // const handleGameEnd = () => {};
   return (
     <>
-      <ReactParallaxTilt>
-        <Header />
-      </ReactParallaxTilt>
+      <PlayAgainPopUp isGameOver={isGameOver} />
+      <Header />
       <ScoreBoard
         score={score}
         bestScore={bestScore}
