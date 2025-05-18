@@ -8,3 +8,7 @@ createRoot(document.getElementById("root")).render(
     <App />
   </StrictMode>
 );
+
+// fix this :
+// music!
+// note about no img pokemon!

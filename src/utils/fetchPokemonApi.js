@@ -1,7 +1,7 @@
 // get random 20 pokemons :
 const getRandomPokemons = (data) => {
   const randomPokemons = [];
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 15; i++) {
     const randomIndex = Math.floor(Math.random() * data.results.length);
     randomPokemons.push(data.results[randomIndex]);
   }

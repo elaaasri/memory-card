@@ -22,7 +22,7 @@ const App = () => {
   // shuffles cards randomly :
   const shuffleCards = () => {
     const shuffledCards = [...cards]; // make a shallow copy
-    for (let i = 0; i < cards.length; i++) {
+    for (let i = 0; i < shuffledCards.length; i++) {
       const randomIndex = Math.floor(Math.random() * (i + 1));
       let temp = shuffledCards[i];
       shuffledCards[i] = shuffledCards[randomIndex];
