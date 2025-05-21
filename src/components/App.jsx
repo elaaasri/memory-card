@@ -4,6 +4,7 @@ import fetchPokemonApi from "../utils/fetchPokemonApi";
 import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
 import AudioCorner from "./AudioCorner";
+import Footer from "./Footer";
 
 // app func :
 const App = () => {
@@ -86,6 +87,7 @@ const App = () => {
         shuffleCards={shuffleCards}
         handleWin={handleWin}
       />
+      <Footer />
     </>
   );
 };
