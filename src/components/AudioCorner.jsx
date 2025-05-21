@@ -6,7 +6,6 @@ const AudioCorner = () => {
   // handles music event :
   const handleMusic = () => {
     const audio = audioRef.current;
-    console.log(isMusicOn);
     if (isMusicOn) {
       audio.play();
       setMusic(false);
@@ -23,7 +22,6 @@ const AudioCorner = () => {
         alt="music icon"
         onClick={handleMusic}
       />
-      <img src="./public/imgs/note-icon.png" id="note-icon" alt="note icon" />
     </div>
   );
 };

@@ -108,12 +108,11 @@
   position: fixed;
   top: 0%;
   left: 0%;
-  transform: translate(50%, 30%);
+  transform: translate(60%, 60%);
 }
-.audio-corner > img {
+.audio-corner {
   width: 50px;
 }
-#music-icon,
-#note-icon {
+#music-icon {
   cursor: pointer;
 }

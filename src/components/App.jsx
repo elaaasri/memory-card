@@ -74,8 +74,8 @@ const App = () => {
 
   return (
     <>
-      <AudioCorner />
       <Header />
+      <AudioCorner />
       <ScoreBoard
         score={score}
         bestScore={bestScore}
