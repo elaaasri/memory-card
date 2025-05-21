@@ -17,7 +17,7 @@ const AudioCorner = () => {
   return (
     <div className="audio-corner">
       <img
-        src="./public/imgs/music-icon.png"
+        src="/imgs/music-icon.png"
         id="music-icon"
         alt="music icon"
         onClick={handleMusic}
