@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import fetchPokemonApi from "../utils/fetchPokemonApi";
 import Header from "./Header";
 import ScoreBoard from "./Scoreboard";
+import AudioCorner from "./AudioCorner";
 
 // app func :
 const App = () => {
@@ -70,8 +71,10 @@ const App = () => {
       gameOver();
     }
   };
+
   return (
     <>
+      <AudioCorner />
       <Header />
       <ScoreBoard
         score={score}
